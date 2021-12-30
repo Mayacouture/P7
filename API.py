@@ -6,16 +6,18 @@ from flask.wrappers import Response
 import joblib
 import pandas as pd
 
+
 #chargement modèle
-model = joblib.load('modele.sav')
+model = joblib.load('best_model.sav')
 
 #chargement dataset
-clients = pd.read_csv('Data/sample.csv')
+clients = pd.read_csv('xtrain_model.csv')
 clients.drop(columns ='Unnamed: 0', inplace =True)
 
 #on initialise l'API
 app = Flask(__name__)
 
+#on définit une route, url, avec l'ID du client à prédire
 #on définit une route, url, avec l'ID du client à prédire
 #on définit une route, url, avec l'ID du client à prédire
 @app.route('/predict/<id_client>')
